@@ -29,6 +29,19 @@ class TrieTree {
         }
         current->endOfWOrd = true ;
     }
+
+    [[nodiscard]] bool prefixSearch(const string& key) const{
+        TrieNode* current = root ;
+
+        for (const char& c: key) {
+            TrieNode* node = current->children[c] ;
+            if (node == nullptr){
+                return false ;
+            }
+            current = node ;
+        }
+        return true ;
+    }
 };
 
 # endif //TRIE_TREE_TRIETREE_H
