@@ -8,7 +8,7 @@ struct TrieNode{
     map<char, TrieNode*> children ;
     bool endOfWOrd ;
 
-    explicit TrieNode() : endOfWOrd(false) {}
+    explicit TrieNode() : endOfWOrd(false), children({}){}
 };
 
 class TrieTree {
@@ -47,7 +47,7 @@ public:
             TrieNode* node = current->children[c] ;
             if (node == nullptr){
                 node = new TrieNode() ;
-                current->children.insert({c, node}) ;
+                current->children[c] = node ;
             }
             current = node ;
         }
