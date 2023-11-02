@@ -78,9 +78,9 @@ public:
         return current->endOfWOrd ;
     }
 
-    void remove(const string& word) const{
+    void remove(const string& word){
         if (searchOfWord(word)){
-            reomve(root, word, 0) ;
+            remove(root, word, 0) ;
         }
     }
 };
