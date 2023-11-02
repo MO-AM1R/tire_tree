@@ -14,6 +14,28 @@ struct TrieNode{
 class TrieTree {
     TrieNode* root ;
 
+    bool remove(TrieNode* _root, const string& word, int index){
+        if (index == word.size()){
+            if (!_root->endOfWOrd){
+                return false;
+            }
+            _root->endOfWOrd = false ;
+            return (int)_root->children.size() == 0;
+        }
+        TrieNode* node = _root->children[word[index]] ;
+        if (node == nullptr){
+            return false;
+        }
+
+        bool deleteFlag = remove(node, word, index + 1);
+        if (deleteFlag){
+            _root->children.erase(word[index]);
+            return (int)_root->children.size() == 0;
+        }
+        return false;
+    }
+
+public:
     TrieTree() = default ;
 
     void insert(const string& key){
@@ -54,6 +76,12 @@ class TrieTree {
             current = node ;
         }
         return current->endOfWOrd ;
+    }
+
+    void remove(const string& word) const{
+        if (searchOfWord(word)){
+            reomve(root, word, 0) ;
+        }
     }
 };
 
