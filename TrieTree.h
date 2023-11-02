@@ -36,7 +36,9 @@ class TrieTree {
     }
 
 public:
-    TrieTree() = default ;
+    explicit TrieTree() {
+        root = new TrieNode() ;
+    }
 
     void insert(const string& key){
         TrieNode* current = root ;
