@@ -42,6 +42,19 @@ class TrieTree {
         }
         return true ;
     }
+
+    [[nodiscard]] bool searchOfWord(const string& word) const{
+        TrieNode* current = root ;
+
+        for (const char& c: word) {
+            TrieNode* node = current->children[c] ;
+            if (node == nullptr){
+                return false ;
+            }
+            current = node ;
+        }
+        return current->endOfWOrd ;
+    }
 };
 
 # endif //TRIE_TREE_TRIETREE_H
